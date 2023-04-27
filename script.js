@@ -22,24 +22,34 @@ function search(str) {
 
 function searchHandler(e) {
 	let typedInput = e.target.value;
+	suggestions.style.display = 'block';
 	return search(typedInput);
 }
 
 function showSuggestions(results) {
 	let listData;
 	if(!results.length) {
-
+		userValue = input.value;
+		listData = userValue;
 	} else {
 		listData = results.join('');
-		console.log(listData);
+		//console.log(listData);
 	}
 	
 	suggestions.innerHTML = listData;
 }
 
 function useSuggestion(e) {
-	// TODO
+	let clickedItem = e.target.innerHTML;
+	input.value = clickedItem;
+	suggestions.innerHTML = clickedItem;
+	suggestions.style.display = 'none';
+;
+
+
 }
+const lis = document.querySelector('.suggestions li');
+console.log(lis);
 
 input.addEventListener('keyup', searchHandler);
 suggestions.addEventListener('click', useSuggestion);
